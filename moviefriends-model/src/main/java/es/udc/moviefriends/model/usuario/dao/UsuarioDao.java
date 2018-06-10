@@ -1,4 +1,6 @@
-package es.udc.moviefriends.model.usuario;
+package es.udc.moviefriends.model.usuario.dao;
+
+import es.udc.moviefriends.model.usuario.Usuario;
 
 public interface UsuarioDao {
 

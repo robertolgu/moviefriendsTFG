@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.udc.moviefriends.model.usuario.Usuario;
-import es.udc.moviefriends.model.usuario.UsuarioDao;
+import es.udc.moviefriends.model.usuario.dao.UsuarioDao;
 
 @Service("usuarioService")
 public class UsuarioServiceImpl implements UsuarioService {

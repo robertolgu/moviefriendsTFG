@@ -25,7 +25,4 @@
 			<many-to-one name="tipoUsuario" column="TIPO_USUARIO" class="es.udc.es.udc.moviefriends.model.usuario.TipoUsuario"/>
 		</class>	
 	
-	 	<query name="findUsuarioById">
-        	<![CDATA[from Usuario u where u.idUsuario = :idUsuario]]>
-    	</query>
 	</hibernate-mapping>	

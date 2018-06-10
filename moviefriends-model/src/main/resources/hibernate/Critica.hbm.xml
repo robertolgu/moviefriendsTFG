@@ -11,6 +11,8 @@
 			
 			<property name="puntuacion" column="PUNTUACION_CRITICA" type="java.lang.Integer"/>
 			<property name="texto" column="TEXTO_CRITICA" type="String"/>
+			<many-to-one name="usuario" column="ID_USUARIO" class="es.udc.es.udc.moviefriends.model.usuario.Usuario"/>
+			<many-to-one name="pelicula" column="ID_PELICULA" class="es.udc.es.udc.moviefriends.model.pelicula.Pelicula"/>
 		</class>
 		
 	</hibernate-mapping>

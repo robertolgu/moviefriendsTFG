@@ -1,10 +1,11 @@
-package es.udc.moviefriends.model.usuario;
+package es.udc.moviefriends.model.usuario.dao;
 
 
-import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+
+import es.udc.moviefriends.model.usuario.Usuario;
 
 @Repository("usuarioDao")
 public class UsuarioDaoHibernate implements UsuarioDao{
@@ -27,15 +28,12 @@ public class UsuarioDaoHibernate implements UsuarioDao{
 	}
 
 	public Usuario findUsuarioById(Integer idUsuario) throws Exception {
-		// Se recupera la query (Usuario.hbm.xml)
-		Query query = hibernateTemplate.getSessionFactory().getCurrentSession().getNamedQuery("findUsuarioById");
-		// Se rellenan los parametros
-		query.setParameter("idUsuario", idUsuario);
-		// Se pasa la query a un String
-		String queryString = query.toString();
+
+		final Usuario usuario = new Usuario();
 		
+		usuario.setIdUsuario(idUsuario);
 		
-		return (Usuario) hibernateTemplate.find(queryString);
+		return (Usuario) hibernateTemplate.findByExample(usuario);
 	}
 
 }

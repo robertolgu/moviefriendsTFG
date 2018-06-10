@@ -54,6 +54,15 @@
 					</many-to-many>		
 			</set>
 			
+			<set name="criticas" table="CRITICA_PELICULA" inverse="false" 
+					lazy="false" fetch="select" cascade="all">
+					<key>
+						<column name="ID_PELICULA" not-null="true"/>					
+					</key>
+					<one-to-many class="es.udc.moviefriends.model.pelicula.Critica"/>
+	
+			</set>
+			
 			
 		</class>
 		
