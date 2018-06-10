@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+	<hibernate-mapping>
+		<class name="es.udc.moviefriends.model.pelicula.Pelicula" table="PELICULA"  catalog="WEBAPP_DB">
+			<id name="idPelicula" type="java.lang.Integer">
+				<column name="ID_PELICULA"/>
+				<generator class="native"/>
+			</id>
+			
+			<property name="titulo" column="TITULO" type="String"/>
+			<property name="anhoEstreno" column="ANHO_ESTRENO" type="Short"/>
+			<property name="sinopsis" column="SINOPSIS" type="String"/>
+			<property name="trailerPath" column="TRAILER_PATH" type="String"/>
+			<property name="posterPath" column="POSTER_PATH" type="String"/>
+			
+			<set name="generosPelicula" table="PELICULA_GENERO_PELICUAL" inverse="false" 
+					lazy="false" fetch="select" cascade="all">
+					<key>
+						<column name="ID_PELICULA" not-null="true"/>					
+					</key>
+					<many-to-many entity-name="es.udc.moviefriends.model.pelicula.GeneroPelicula">
+						<column name="ID_GENERO_PELICULA" not-null="true"/>
+					</many-to-many>		
+			</set>
+			<set name="actores" table="PELICULA_ACTOR" inverse="false" 
+					lazy="false" fetch="select" cascade="all">
+					<key>
+						<column name="ID_PELICULA" not-null="true"/>					
+					</key>
+					<many-to-many entity-name="es.udc.moviefriends.model.pelicula.Actor">
+						<column name="ID_ACTOR" not-null="true"/>
+					</many-to-many>		
+			</set>
+			
+			<set name="directores" table="PELICULA_DIRECTOR" inverse="false" 
+					lazy="false" fetch="select" cascade="all">
+					<key>
+						<column name="ID_PELICULA" not-null="true"/>					
+					</key>
+					<many-to-many entity-name="es.udc.moviefriends.model.pelicula.Director">
+						<column name="ID_DIRECTOR" not-null="true"/>
+					</many-to-many>		
+			</set>
+			
+			<set name="guionistas" table="PELICULA_GUIONISTA" inverse="false" 
+					lazy="false" fetch="select" cascade="all">
+					<key>
+						<column name="ID_PELICULA" not-null="true"/>					
+					</key>
+					<many-to-many entity-name="es.udc.moviefriends.model.pelicula.Guionista">
+						<column name="ID_GUIONISTA" not-null="true"/>
+					</many-to-many>		
+			</set>
+			
+			
+		</class>
+		
+		<sql-query name="getPuntuacionMediaNumeroPuntuacionesUsuarios">
+			SELECT AVG(PUNTUACION) as puntuacionMedia, COUNT(*) numeroPuntuaciones
+			FROM WEBAPP_DB.PUNTUACION_PELICULA_USUARIO
+			WHERE ID_PELICULA = :idPelicula
+		</sql-query>
+	
+	</hibernate-mapping>

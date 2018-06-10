@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+	<hibernate-mapping>
+	
+    	<typedef name="encrypted" class="org.jasypt.hibernate4.type.EncryptedStringType">
+      		<param name="encryptorRegisteredName">strongHibernateStringEncryptor</param>
+    	</typedef>
+    	
+		<class name="es.udc.moviefriends.model.usuario.Usuario" table="USUARIO" catalog="WEBAPP_DB">
+			<id name="idUsuario" type="java.lang.Integer">
+				<column name="ID_USUARIO"/>
+				<generator class="native"/>
+			</id>
+			
+			<property name="email" column="EMAIL" type="string"/>
+			<property name="fechaAlta" column="FECHA_ALTA" type="java.util.Date"/>
+			<property name="password" column="PASSWORD" type="encrypted"/>
+			<property name="primerApellido" column="PRIMER_APELLIDO" type="string"/>
+			<property name="segundoApellido" column="SEGUNDO_APELLIDO" type="string"/>
+			<property name="fechaNacimiento" column="FECHA_NACIMIENTO" type="java.util.Date"/>
+			<property name="genero" column="GENERO" type="string"/>
+			<property name="fotoPerfilPath" column="FOTO_PERFIL_PATH" type="string"/>
+			<many-to-one name="tipoUsuario" column="TIPO_USUARIO" class="es.udc.es.udc.moviefriends.model.usuario.TipoUsuario"/>
+		</class>	
+	
+	 	<query name="findUsuarioById">
+        	<![CDATA[from Usuario u where u.idUsuario = :idUsuario]]>
+    	</query>
+	</hibernate-mapping>	

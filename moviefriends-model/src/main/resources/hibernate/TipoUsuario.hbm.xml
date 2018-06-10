@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+	<hibernate-mapping>
+		<class name="es.udc.moviefriends.model.usuario.TipoUsuario" table="TIPO_USUARIO" catalog="WEBAPP_DB">
+			<id name="idTipoUsuario" type="java.lang.Integer">
+				<column name="ID_TIPO_USUARIO"/>
+				<generator class="native"/>
+			</id>
+			<property name="descTipoUsuario" column="DESC_TIPO_USUARIO" type="string"/>
+		</class>	
+	</hibernate-mapping>
